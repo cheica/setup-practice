@@ -23,7 +23,9 @@ default: &default
 
 development:
   <<: *default
-  database: react_rails_api_project_template_development
+  database: phase_4_cakes_oct5_557pm
+  # database: react_rails_api_project_template_development
+
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
