@@ -11,11 +11,11 @@ Cake.destroy_all
 
 puts("USER SEEDING STARTING")
 
-allen = User.create(name:"Allen") 
+allen = User.create(username:"Allen", password:"drummer") 
 
-eva = User.create(name:"Eva") 
+eva = User.create(username:"Eva", password:"animestuff") 
 
-chelsea = User.create(name:"Chelsea") 
+chelsea = User.create(username:"Chelsea", password:"winniepooh") 
 
 puts("USER SEEDING DONE")
 

@@ -41,12 +41,15 @@ class CakesController < ApplicationController
     end
 
     def destroy
+        # byebug
         cake_del = Cake.find_by(id: params[:id])
 
         if cake_del
             cake_del.destroy
-            head :no_content
+            render json: cake_del
+            # head :no_content
         else 
+            # byebug
             render json: {error: "Cake Not Found"}, status: :not_found
         end 
     end 
