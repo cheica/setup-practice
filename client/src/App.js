@@ -3,6 +3,7 @@
 import {useState, useEffect} from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './App.css';
+import LogIn from './Login';
 import Home from './Home';
 import About from './About';
 import AllCakes from './AllCakes';
@@ -47,12 +48,15 @@ function App () {
     function handleSubmit(e) {
       console.log("Im in the handlesubmit")
       e.preventDefault();
+      const newCakie = document.getElementById("cakieName").value;
       let newCake = {
-        "name": cakeName,
+        "name": newCakie,
+    
         "image": pic,
         "ingredients": ings,
-        "user_id": 4,
+        "user_id": 1,
       }
+      console.log(cakeName);
       fetch("/cakes",{
         method: 'POST',
         headers: { "Content-type" : "application/json",
@@ -67,6 +71,66 @@ function App () {
       })
 
     }
+
+    // const [cakeName1, setCakeName1] = useState([])
+    //   useEffect( () => {
+    //   fetch("/cakes")
+    //   .then(response => response.json())
+    //   .then(fetchedCakes => {console.log("from Fetch: ", fetchedCakes)
+    //       setCakes(fetchedCakes)
+    //       }
+    //       )},
+    //   []);
+    // ------------------
+    const [cakeName1, setCakeName1] = useState("")
+   
+      // Handle cake[NAME] typing and SetCakeNAME
+      function handleCKType(e) {
+        console.log("I'm typing this: ", e.target.value)
+        //setcakename here vvv
+        setCakeName1(e.target.value)
+        console.log("This is the new Name:", cakeName1)
+       }
+
+    function handleSubmit1(e,cakeID) {
+
+      
+      console.log("Im in the handlesubmit", cakeID)
+      e.preventDefault();
+      const newCakeName = document.getElementById(`changeName-${cakeID}`).value;
+      console.log(newCakeName)
+      let newCake1 = {
+        "name": newCakeName,
+      }
+      fetch(`/cakes/${cakeID}`,{
+        method: "PATCH",
+        headers: { "Content-type" : "application/json",
+        },
+      body: JSON.stringify(newCake1)
+      
+      })
+      .then(response => response.json())
+      .then(singleCake1 => {
+        
+
+         let filterCakes = cakes.filter(eachCake => 
+          eachCake.id != singleCake1.id)
+          setCakes([singleCake1, ...filterCakes])
+        //   console.log(singleCake1)
+        //  setCakes([singleCake1, ...cakes])
+
+      })
+  
+      fetch("/cakes")
+      .then(response => response.json())
+      .then(fetchedCakes => {console.log("from Fetch: ", fetchedCakes)
+          setCakes(fetchedCakes)
+          }
+          )
+
+    }
+
+
     function deleteCake (cakieID){
       //  
       console.log(`delete  called: ${cakieID}`);
@@ -103,6 +167,7 @@ function App () {
       cakePicType = {handlePicType}
       cakeIngType = {handleIngType}
       submitActions = {handleSubmit}
+      patchActions ={handleSubmit1}
       deleteButton ={deleteCake}
       // logInstuff ={renderSignupAndLogin()}
 
@@ -111,6 +176,7 @@ function App () {
       <Route path="/Home" exact component={Home} />
             <Route path="/Aboutus" exact component={About} />
             <Route path="/" exact component={Home} />
+            <Route path ="/login" exact component={LogIn}/>
     </Switch>
     </BrowserRouter>
     </div>

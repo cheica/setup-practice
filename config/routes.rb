@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   
   resources :cakes, only: [:index, :show, :create, :update, :destroy]
   resources :users, only: [:index]
-  # post "/login", to: "sessions#create"
+
+  post "/login", to: "sessions#create"
+  post "/login", to: "sessions#destroy"
   # delete "/logout", to: "sessions#destroy"
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!

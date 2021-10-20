@@ -49,6 +49,9 @@ top: -100px;
   line-height: 84px;
   
   color: #C99992;
+
+
+  
   
 }
 .eclipse1 {
@@ -314,12 +317,6 @@ color: #FFFFFF;
   border-radius: 25px
 
 }
-h2.cake123{
-  height: 10px;
-  text-align: center;
-  font-family: Roboto;
-  color: #C99992;
-}
 h3.cakeText{
   text-align: center;
   color: #C99992;
@@ -350,9 +347,20 @@ background-color: #6c6061
     border: none;
     border-radius: 25px;
     display: block;
+    color: white;
   }
   h4.cakeText2{
     text-align: center;
     color: #C99992;
     font-family: Roboto;
   }
+  .input[type=text]{
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+     border-radius: 20px;
+     border: 1px solid #C99992;
+     color: #6c6061;
+     width: 250px;
+     height: 30px;
+     padding-left: 10px;
+    }

@@ -50,7 +50,38 @@ function AllCakes (props) {
                 //         })
                 //         return newCakes
                 //         }
-                    
+            //     const [nameBeingEdited, setNameBeingEdited] = useState( "" )
+            //     console.log("In Form - usernameBeingEdited: ", usernameBeingEdited)
+            //       const typingNameBeingEdited =(sythEvent)=>{
+        
+            //         setNameBeingEdited(sythEvent.target.value)
+        
+            //       }
+        
+            //   const handleEditCakeAccount =(sythEvent)=> { 
+            //     sythEvent.preventDefault()
+            //     // console.log(sythEvent)
+            //     // console.log("In handleUserLogin")
+            //     console.log("❗️❗️ REMEMBER THE BYEBUG ❗️❗️")
+        
+        
+            //     fetch(`/cakes/${name.id}`, {
+        
+            //       method: "PATCH",
+            //       headers: { 'Content-Type': 'application/json' },
+            //       body: JSON.stringify({ cakeName: nameBeingEdited })
+        
+            //     })
+            //     .then(r => r.json())
+            //     .then(editedCake =>{  console.log("WOW✨  >>  ", editedCake)  //
+        
+            //       setCurrentUser(editedCake)
+            //       // Saying Now NO-ONE is Logged In
+        
+            //     })      
+        
+            //   }
+        
     
                 
 
@@ -67,13 +98,20 @@ const mapCakes = () => {
             
             <div>
     
-                <h2 class = "cake123">{eachCake.name}</h2>
+                <h2 className = "cake123">{eachCake.name}</h2>
 
             <div className="cakeForm">
             <img className='cakeCard' src ={ eachCake.image} alt=" cake"/>
             {/* <Button className='button1' onClick={handleMyCakeClick} variant="warning">Delete Cake </Button> */}
                  <Button className='button1' onClick={ (e) => props.deleteButton(eachCake.id)}variant="warning">Delete Cake </Button> 
-                 <Button className='button1'>Update Name </Button>  
+                 <Button className='button1' onClick={(e) => props.patchActions(e, eachCake.id)}type ="submit">Update Name </Button>  
+
+                 <form onSubmit={props.submitActions}>
+            <label classname="SamText">Name</label>
+            <input className="input" id={`changeName-${eachCake.id}`} type="text" />
+            
+            {/* <input className="button" type="submit" value="SUBMIT" /> */}
+        </form>
             <h3 class ="cakeText">{eachCake.ingredients}</h3>
             <h4 className = "cakeText2"> Anonymous user: {eachCake.user_id}</h4>
             </div>
@@ -86,6 +124,8 @@ const mapCakes = () => {
     
 }
 
+
+
 return (
     <>
     
@@ -93,14 +133,14 @@ return (
          
 
         <form onSubmit={props.submitActions}>
-            <label classname="SamText">Name</label>
-            <input type="text" onChange={props.cakeNameType}/>
-            <label>Image</label>
-            <input type="text" onChange={props.cakePicType}/>
-            <label>Ingredients</label>
-            <input type="text" onChange={props.cakeIngType}/>
-            <label>User</label>
-            <input type="text"/>
+            <label className="button">Name</label>
+            <input className="input" id="cakieName" type="text"/>
+            <label className="button">Image</label>
+            <input className="input" type="text" onChange={props.cakePicType}/>
+            <label className="button" >Ingredients</label>
+            <input className="input" type="text" onChange={props.cakeIngType}/>
+            {/* <label>User</label>
+            <input type="text"/>  */}
             <input className="button" type="submit" value="SUBMIT" />
         </form>
         
